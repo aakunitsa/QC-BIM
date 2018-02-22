@@ -1,0 +1,43 @@
+SCRATCH_TOP 'cwd' ! use 'cwd' for current directory, otherwise '/scratch_dir'
+CODE 'nw'         ! use 'nw' or 'g09' -- g09 requires setting Gaussian environment
+BQ_GRAD    .false.
+BSSE .false.
+THEORY scf
+EMBED 'dipole'   ! use 'esp' or 'dipole' or 'atdipole'
+BEGIN FRAGMENT ----- 
+  NFRG   1       ! how many distinct molecule types
+  NMOL  2        ! how many of each molecule (space separated)
+  NSITE 2        ! how many atoms per each molecule type
+  CHARGE 0       ! net charge on each molecule type
+  F 19.0         ! atomic symbol and mass
+  H 1.0  
+END FRAGMENT 
+BASIS    '4-31g'
+RCUT     20.0 20.0 20.0  ! Spherical QM, BQ, LR cutoffs
+GEOM     'hf2.xyz'   ! <--- initial structure (lattice consts on line 2)
+JOB     1  ! 0 = ENER, 1 = EN/GRAD, 2 = OPTIMIZE, 3 = MD, 4 = FREQ, 5 = RESCALE-CELL
+PRESS   0 0 1  ! p_start p_end p_step (bar)
+
+BEGIN OPTIMIZE INFO
+	FREEZE_CELL .false.
+	OPTIMIZER  0 ! 0 = cell gradient descent/atom l-bfgs, 1 = full l-bfgs
+    ATOM_GMAX 0.0009
+    LAT_GMAX  0.0003
+    MAXITER 50
+END OPTIMIZE INFO
+
+BEGIN MD INFO
+  RESTART  0  ! 0 (Read XYZ) 1 (Read RESTART)
+  NPROD   100
+  NSAVE    2
+  DT      1.0   ! time step in femtosecond
+  TEMP    300  .true. ! temperature Temp_tol
+END  MD INFO
+
+BEGIN FREQ INFO
+   INTER_CELL 1 0 0  ! hessian with +/- how many cells in each periodic dim
+END FREQ INFO
+
+BEGIN RESCALE INFO
+	LAT_PARAMS 8.95215700  15.44644236  14.59701510  90.0  90.0  90.0  0
+END RESCALE INFO

@@ -1,0 +1,23 @@
+title "BIM DIPOLE (MONO 2) "
+scratch_dir ./job_cpu1
+permanent_dir ./job_cpu1
+start job_cpu1
+memory total 3800 mb
+
+charge    0
+geometry units angstroms noautosym noautoz nocenter
+   F         1.1329818300        0.5004007100        0.0000000000
+   H         2.0120632600        0.1458054300        0.0000000000
+end
+
+basis spherical
+ * library 4-31g
+end
+
+scf 
+thresh 1e-8
+noprint mulliken
+end
+
+task scf energy
+

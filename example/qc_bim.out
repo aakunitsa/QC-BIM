@@ -1,0 +1,59 @@
+ Reading input file: qc_bim.inp
+ Validated scratch dir: .
+ Using NWChem
+    BIM INPUT   
+ ---------------
+   2 molecules
+   4 atoms
+ 
+   Use BQ Force? F
+   BSSE Correct? F
+   Code: nw
+   Theory: scf       
+   Basis: 4-31g                         
+   Embedding: dipole
+   QM/BQ/LR cutoffs (Angstrom):      20.00     20.00     20.00
+   Input geometry file: hf2.xyz                                                                                                                 
+   Job ID:   1
+ 
+   Ext pressure (bar):     0.000
+   Gradient calc? T
+   Freq calc? F
+   Optimization? F
+   MD? F
+ 
+            INPUT GEOMETRY            
+  mol(at)          coordinates        
+ -------------------------------------
+ 1(1) F     -1.133    -0.500     0.000
+ 1(2) H     -0.256    -0.142     0.000
+ 2(3) F      1.133     0.500     0.000
+ 2(4) H      2.012     0.146     0.000
+Lattice vectors:
+   ( 4.536, 0.000, 0.000 )
+Volume (Ang**3)    4.536
+ 
+(Re)allocating neighbor lists...
+
+   BIM_POT: lists...EMBEDDING...LR...mono...16 dimers...wall: 0m 16s
+        FINAL BIM RESULTS 
+       -------------------
+E(mono)      -199.8785953099
+E(dimer)        0.0651593781
+E(LR)           0.0000000000
+Etot         -199.8134359317
+Etot/N        -99.9067179659
+ 
+                    BIM ENERGY GRADIENTS
+  mol(at)           coordinates                    gradient            
+ ----------------------------------------------------------------------
+ 1(1) F     -1.133    -0.500     0.000    -0.0041    -0.0000     0.0000
+ 1(2) H     -0.256    -0.142     0.000     0.0044     0.0013     0.0000
+ 2(3) F      1.133     0.500     0.000    -0.0050    -0.0002     0.0000
+ 2(4) H      2.012     0.146     0.000     0.0046    -0.0011     0.0000
+ 
+          STRESS TENSOR (BAR)  
+         ---------------------  
+  2278075.4 -1899457.6        0.0
+     5361.4    22894.9        0.0
+        0.0        0.0        0.0
